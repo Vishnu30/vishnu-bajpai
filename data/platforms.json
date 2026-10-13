@@ -1,0 +1,184 @@
+{
+  "platforms": [
+    {
+      "id": "Braze",
+      "years": "5+ years",
+      "role": "Engagement and lifecycle",
+      "color": "#E8562A",
+      "cert": "Braze Certified Practitioner and Braze Certified Digital Strategist",
+      "solved": [
+        "Turned one-time buyers into repeat customers with loyalty and win-back journeys",
+        "Fed warehouse events into Braze to unlock behaviour-triggered personalisation",
+        "Replaced batch email with real-time cross-channel journeys during migrations",
+        "Built compliant onboarding and retention journeys for regulated fintech",
+        "Reactivated dormant cohorts with tiered, holdout-tested journeys"
+      ],
+      "features": [
+        {
+          "n": "Canvas Flow",
+          "d": "Multi-step journeys with action paths, audience splits and experiment paths"
+        },
+        {
+          "n": "Liquid and Connected Content",
+          "d": "Real-time personalisation pulling live data into messages"
+        },
+        {
+          "n": "Currents",
+          "d": "Streaming engagement events to the warehouse for attribution"
+        },
+        {
+          "n": "Cloud Data Ingestion",
+          "d": "Syncing warehouse tables into user attributes and events"
+        },
+        {
+          "n": "Segment Extensions",
+          "d": "SQL and event-property segments beyond the standard filters"
+        },
+        {
+          "n": "Intelligent Timing and Selection",
+          "d": "Per-user send-time optimisation and automatic variant selection"
+        },
+        {
+          "n": "Content Cards and in-app",
+          "d": "Persistent in-app feeds and contextual messages"
+        },
+        {
+          "n": "Catalogs and Predictive Suite",
+          "d": "Product-data personalisation and churn and purchase predictions"
+        }
+      ]
+    },
+    {
+      "id": "Salesforce",
+      "years": "5+ years",
+      "role": "Leads, pipeline and revenue data",
+      "color": "#1798C1",
+      "cert": "Hands-on across sales, service and marketing operations",
+      "solved": [
+        "Rebuilt lead scoring and routing so MQLs became SQLs",
+        "Automated SLA follow-up and escalation for high-intent leads",
+        "Built stage-wise funnel and sales reporting for budget decisions",
+        "Connected account data to the engagement platform so journeys reflect customer status",
+        "Ran enterprise CRM governance across many stakeholders"
+      ],
+      "features": [
+        {
+          "n": "Einstein lead and opportunity scoring",
+          "d": "AI scores to prioritise which leads sales calls first"
+        },
+        {
+          "n": "Flow Builder",
+          "d": "Record-triggered and scheduled automation replacing manual steps"
+        },
+        {
+          "n": "Assignment and escalation rules",
+          "d": "Lead routing by territory and capacity, with SLA escalation"
+        },
+        {
+          "n": "Lightning App Builder and components",
+          "d": "Custom record pages that surface what reps need"
+        },
+        {
+          "n": "Reports and dashboards",
+          "d": "Stage-wise funnel, conversion and pipeline reporting"
+        },
+        {
+          "n": "Campaign influence",
+          "d": "Connecting marketing touches to pipeline and revenue"
+        },
+        {
+          "n": "Marketing Cloud Journey Builder",
+          "d": "Journeys and data extensions, and migrating them to Braze"
+        },
+        {
+          "n": "Validation rules and data hygiene",
+          "d": "Keeping lead and account data clean at the point of entry"
+        }
+      ]
+    },
+    {
+      "id": "HubSpot",
+      "years": "RevOps certified",
+      "role": "Marketing and RevOps",
+      "color": "#F57A41",
+      "cert": "HubSpot Certified in Revenue Operations, Digital Marketing and Digital Advertising",
+      "solved": [
+        "Mapped lifecycle stages, properties and workflows for clean migrations",
+        "Moved lists and automations into real-time journeys"
+      ],
+      "features": [
+        {
+          "n": "Workflows",
+          "d": "Property-based automation and enrolment logic"
+        },
+        {
+          "n": "Lifecycle stages and lead scoring",
+          "d": "Defining MQL and SQL in the CRM"
+        },
+        {
+          "n": "Lists and properties",
+          "d": "Audits and mapping for migration"
+        }
+      ]
+    },
+    {
+      "id": "MoEngage",
+      "years": "Hands-on",
+      "role": "Mobile and cross-channel engagement",
+      "color": "#3A6EA8",
+      "cert": "",
+      "solved": [
+        "Unified email, push, WhatsApp and in-app journeys",
+        "Ran CRM-led reactivation instead of paid retargeting"
+      ],
+      "features": [
+        {
+          "n": "Flows",
+          "d": "Cross-channel journey orchestration"
+        },
+        {
+          "n": "WhatsApp and push",
+          "d": "High-reach channels for consumer apps"
+        },
+        {
+          "n": "Sherpa",
+          "d": "AI-based send-time and variant optimisation"
+        }
+      ]
+    },
+    {
+      "id": "CleverTap",
+      "years": "Hands-on",
+      "role": "Mobile app engagement",
+      "color": "#D6336C",
+      "cert": "",
+      "solved": [
+        "Onboarding and activation journeys for a consumer app",
+        "Behaviour-triggered push and in-app engagement"
+      ],
+      "features": [
+        {
+          "n": "Journeys",
+          "d": "Event-triggered lifecycle flows"
+        },
+        {
+          "n": "RFM segmentation",
+          "d": "Recency, frequency and monetary segments"
+        },
+        {
+          "n": "In-app and push",
+          "d": "Contextual activation nudges"
+        }
+      ]
+    }
+  ],
+  "also": [
+    "Netcore",
+    "Kenscio",
+    "AppsFlyer",
+    "Firebase",
+    "Google Analytics",
+    "Tableau",
+    "Metabase"
+  ]
+}

@@ -1,0 +1,192 @@
+[
+  {
+    "name": "Onboarding to activation",
+    "goal": "Get a new user to first value",
+    "kpi": "Typical result: activation +11%",
+    "steps": [
+      {
+        "when": "Signup",
+        "channel": "Email",
+        "title": "Welcome and single next step",
+        "detail": "One clear action, no feature tour."
+      },
+      {
+        "when": "First session",
+        "channel": "In-app",
+        "title": "Guided first action",
+        "detail": "Contextual prompt triggered by the screen the user is on."
+      },
+      {
+        "when": "Day 1",
+        "channel": "Push",
+        "title": "Nudge if no first action",
+        "detail": "Sent only to users who haven't hit the activation event."
+      },
+      {
+        "when": "Day 3",
+        "channel": "Email",
+        "title": "Value proof",
+        "detail": "Content matched to the segment's intent signal."
+      },
+      {
+        "when": "Day 7",
+        "channel": "Branch",
+        "title": "Split: activated vs not",
+        "detail": "Activated users move to engagement; others get a final rescue offer."
+      }
+    ],
+    "bestFor": "Apps and fintech products where installs don't turn into active users"
+  },
+  {
+    "name": "Lead nurture with SLA",
+    "goal": "Turn MQLs into SQLs before they go cold",
+    "kpi": "Typical result: MQL to SQL +20%, response time −35%",
+    "steps": [
+      {
+        "when": "Lead created",
+        "channel": "CRM",
+        "title": "Score and route",
+        "detail": "Routing rules by intent, geography and owner capacity."
+      },
+      {
+        "when": "0 to 15 min",
+        "channel": "WhatsApp",
+        "title": "Instant acknowledgement",
+        "detail": "Confirms the request and sets expectations."
+      },
+      {
+        "when": "SLA breach",
+        "channel": "Sales alert",
+        "title": "Escalate to team lead",
+        "detail": "Automatic reassignment if the owner hasn't responded."
+      },
+      {
+        "when": "Day 1 to 5",
+        "channel": "Email",
+        "title": "Cohort-matched nurture",
+        "detail": "Content depends on acquisition source and stage."
+      },
+      {
+        "when": "SQL",
+        "channel": "Report",
+        "title": "Stage-wise attribution",
+        "detail": "Credit flows back to the channel and campaign."
+      }
+    ],
+    "bestFor": "High-volume lead businesses where sales follow-up is slow"
+  },
+  {
+    "name": "Repeat purchase and loyalty",
+    "goal": "Make the second purchase happen",
+    "kpi": "Typical result: repeat purchases +18%, LTV +12%",
+    "steps": [
+      {
+        "when": "Order 1",
+        "channel": "Email",
+        "title": "Post-purchase confirmation",
+        "detail": "Sets up the loyalty programme and next reward."
+      },
+      {
+        "when": "Usage window",
+        "channel": "Push",
+        "title": "Behaviour-based cross-sell",
+        "detail": "Recommendations from category and browse intent."
+      },
+      {
+        "when": "Typical reorder point",
+        "channel": "In-app",
+        "title": "Reorder reminder",
+        "detail": "Timed to the segment's median repurchase interval."
+      },
+      {
+        "when": "Missed window",
+        "channel": "Email",
+        "title": "Incentive with holdout",
+        "detail": "Offer only where holdout tests show incremental lift."
+      },
+      {
+        "when": "Order 2+",
+        "channel": "Report",
+        "title": "AOV and LTV tracking",
+        "detail": "Feeds which journeys get scaled."
+      }
+    ],
+    "bestFor": "Retail, QSR and marketplaces with weak second purchase"
+  },
+  {
+    "name": "Dormant reactivation",
+    "goal": "Win back lapsed users without paid retargeting",
+    "kpi": "Typical result: inactive users −17%",
+    "steps": [
+      {
+        "when": "Lapse detected",
+        "channel": "Segment",
+        "title": "Dormancy tier",
+        "detail": "Tiers by recency and historical value."
+      },
+      {
+        "when": "Tier entry",
+        "channel": "Email",
+        "title": "What's new since you left",
+        "detail": "Personalised to what they last used."
+      },
+      {
+        "when": "+3 days",
+        "channel": "Push",
+        "title": "Low-friction return action",
+        "detail": "One tap back into the product."
+      },
+      {
+        "when": "+7 days",
+        "channel": "WhatsApp",
+        "title": "High-value tier offer",
+        "detail": "Reserved for the top value tier only."
+      },
+      {
+        "when": "+14 days",
+        "channel": "Suppress",
+        "title": "Sunset or hand to paid",
+        "detail": "Stops spend on users who won't return."
+      }
+    ],
+    "bestFor": "Products bleeding paid budget on retargeting lapsed users"
+  },
+  {
+    "name": "Migration to Braze",
+    "goal": "Switch CRM platforms without losing data, sends or reputation",
+    "kpi": "Typical result: deployment time −15%",
+    "steps": [
+      {
+        "when": "Week 1",
+        "channel": "Audit",
+        "title": "Inventory the old platform",
+        "detail": "Every object, list, property, workflow and template in Salesforce or HubSpot, with an owner and keep/kill decision."
+      },
+      {
+        "when": "Week 2",
+        "channel": "Data",
+        "title": "Map to Braze schema",
+        "detail": "Custom attributes, events and purchases defined; data pipeline or CDP sync agreed with engineering."
+      },
+      {
+        "when": "Week 3 to 4",
+        "channel": "Canvas",
+        "title": "Rebuild, don't copy",
+        "detail": "Priority journeys rebuilt as real-time Canvases with behaviour triggers and holdouts."
+      },
+      {
+        "when": "Week 4 to 5",
+        "channel": "Deliverability",
+        "title": "Warm up and run in parallel",
+        "detail": "IP and domain warm-up on engaged users while the old platform still sends."
+      },
+      {
+        "when": "Cutover",
+        "channel": "Go-live",
+        "title": "Switch and decommission",
+        "detail": "Sign-off checklist, suppression sync, then old workflows turned off."
+      }
+    ],
+    "bestFor": "Teams moving off Salesforce Marketing Cloud or HubSpot"
+  }
+]

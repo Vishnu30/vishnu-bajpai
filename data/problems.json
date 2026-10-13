@@ -1,0 +1,257 @@
+[
+  {
+    "layer": "revops",
+    "t": "A GTM pipeline nobody owned end to end",
+    "k": "−20%",
+    "kl": "rework",
+    "stack": [
+      "Salesforce",
+      "JIRA"
+    ],
+    "p": "Marketing, sales, product and data each ran their own process, so campaigns stalled between hand-offs and priorities shifted weekly.",
+    "d": [
+      "Mapped the GTM workflow from request to launch and gave every stage an owner.",
+      "Introduced RAID and RACI governance and business-tech requirement reviews.",
+      "Set one prioritised roadmap ranked by funnel and lifecycle KPIs."
+    ],
+    "i": [
+      "Rework down ~20%.",
+      "Delivery timelines ~15% faster.",
+      "One plan that every team works from."
+    ],
+    "scale": "Enterprise CRM and campaign programmes spanning marketing, sales, product and data"
+  },
+  {
+    "layer": "revops",
+    "t": "MQLs that never became pipeline",
+    "k": "+20%",
+    "kl": "MQL to SQL",
+    "stack": [
+      "Salesforce"
+    ],
+    "p": "Lead volume grew faster than sales could qualify it, and marketing and sales disagreed on what a qualified lead was.",
+    "d": [
+      "Agreed MQL and SQL definitions and stage owners with sales.",
+      "Rebuilt lead scoring and routing by intent, geography and capacity.",
+      "Added nurture for leads not yet sales-ready."
+    ],
+    "i": [
+      "MQL-to-SQL conversion up ~20%.",
+      "Unconverted leads down ~22%."
+    ],
+    "scale": "Inbound lead funnel during rapid scale-up"
+  },
+  {
+    "layer": "revops",
+    "t": "High-intent leads going cold",
+    "k": "−35%",
+    "kl": "response time",
+    "stack": [
+      "Salesforce",
+      "WhatsApp"
+    ],
+    "p": "Hot leads waited hours for a first call, and there was no alert when follow-up slipped.",
+    "d": [
+      "Instant acknowledgement on WhatsApp and email.",
+      "SLA timers with automatic escalation and reassignment.",
+      "Response-time visibility for sales leads."
+    ],
+    "i": [
+      "Average response time down ~35%.",
+      "Fewer high-intent leads lost to slow follow-up."
+    ],
+    "scale": "High-intent inbound leads, routed across sales teams"
+  },
+  {
+    "layer": "revops",
+    "t": "Sales and campaign reporting nobody trusted",
+    "k": "~30%",
+    "kl": "faster decisions",
+    "stack": [
+      "Tableau",
+      "Metabase",
+      "Salesforce"
+    ],
+    "p": "Every team had its own numbers, so leadership spent meetings debating data instead of deciding.",
+    "d": [
+      "Consolidated scattered reports into standard dashboards.",
+      "Built stage-wise funnel reporting from first touch to closed revenue.",
+      "Tied each initiative to one OKR."
+    ],
+    "i": [
+      "Leadership decisions ~30% faster.",
+      "Faster reallocation of paid and CRM budgets."
+    ],
+    "scale": "Leadership reporting across competing growth initiatives"
+  },
+  {
+    "layer": "martech",
+    "t": "Clicks landing on the wrong screen",
+    "k": "+16%",
+    "kl": "activation to conversion",
+    "stack": [
+      "Deep links",
+      "AppsFlyer",
+      "Firebase"
+    ],
+    "p": "Push, email and WhatsApp were run separately, and taps opened the app home screen instead of the content promised, so intent was lost.",
+    "d": [
+      "Deep links that open the exact in-app screen from every channel.",
+      "Unified journeys across email, push, WhatsApp and in-app with frequency caps.",
+      "Click-to-conversion tracking per channel."
+    ],
+    "i": [
+      "Activation-to-conversion up ~16% across the unified journeys.",
+      "One owner per journey, not per channel."
+    ],
+    "scale": "Four channels: email, push, WhatsApp and in-app"
+  },
+  {
+    "layer": "martech",
+    "t": "Personalisation starved of data",
+    "k": "+35%",
+    "kl": "segmentation accuracy",
+    "stack": [
+      "Braze",
+      "Data warehouse"
+    ],
+    "p": "Rich behavioural data sat in the warehouse but never reached the engagement platform, so segments ran on a few thin attributes.",
+    "d": [
+      "Designed warehouse-to-Braze event and attribute pipelines.",
+      "Defined the attributes each priority journey needed.",
+      "Joint planning between data and CRM teams."
+    ],
+    "i": [
+      "Segmentation accuracy up ~35%.",
+      "Behaviour-triggered journeys that weren't possible before."
+    ],
+    "scale": "Warehouse-to-Braze pipelines for multiple client brands"
+  },
+  {
+    "layer": "martech",
+    "t": "Outgrown CRM platforms",
+    "k": "−15%",
+    "kl": "deployment time",
+    "stack": [
+      "Salesforce",
+      "HubSpot",
+      "Braze"
+    ],
+    "p": "Batch email tools couldn't trigger in real time, and years of undocumented lists and workflows made switching feel risky.",
+    "d": [
+      "Audited every object, list and workflow, then mapped them to Braze attributes and events.",
+      "Rebuilt priority journeys as real-time Canvases rather than copies.",
+      "Phased cutover with IP warm-up and parallel runs."
+    ],
+    "i": [
+      "Real-time journeys replaced batch sends.",
+      "Deployment time down ~15%, 95%+ on time."
+    ],
+    "scale": "Salesforce and HubSpot migrations for global brands"
+  },
+  {
+    "layer": "martech",
+    "t": "A martech stack with no roadmap",
+    "k": "5 teams",
+    "kl": "on one plan",
+    "stack": [
+      "Braze",
+      "Salesforce"
+    ],
+    "p": "Marketing, product, data, engineering and compliance all raised martech requests, and the loudest one won.",
+    "d": [
+      "Own the martech roadmap, intake and release planning.",
+      "CRM, data and tracking integrations across channels.",
+      "Activation, conversion and retention KPIs to rank every request."
+    ],
+    "i": [
+      "One prioritised delivery plan across acquisition, onboarding and retention.",
+      "Better audience quality and attribution accuracy."
+    ],
+    "scale": "Five teams, global trading platform"
+  },
+  {
+    "layer": "crm",
+    "t": "Customers buying once, never twice",
+    "k": "+18%",
+    "kl": "repeat purchases",
+    "stack": [
+      "Braze"
+    ],
+    "p": "First purchase was healthy, but calendar-driven blasts weren't bringing anyone back.",
+    "d": [
+      "Redesigned onboarding, loyalty and win-back journeys.",
+      "Behaviour- and intent-based segments.",
+      "AOV, repeat-purchase and attribution reporting."
+    ],
+    "i": [
+      "Repeat purchases up ~18%, LTV up ~12%.",
+      "CTR up ~22%."
+    ],
+    "scale": "Global retail and QSR brands across markets"
+  },
+  {
+    "layer": "crm",
+    "t": "Dormant users bought back with paid ads",
+    "k": "−17%",
+    "kl": "inactive users",
+    "stack": [
+      "Braze",
+      "MoEngage"
+    ],
+    "p": "Lapsed users were re-acquired through paid retargeting, and reactivation was manual and one-off.",
+    "d": [
+      "Dormancy tiers by recency and value.",
+      "Automated, multi-step reactivation per tier.",
+      "Holdouts to measure true lift."
+    ],
+    "i": [
+      "Inactive users down ~17%.",
+      "Organic re-engagement up ~25%."
+    ],
+    "scale": "Dormant cohorts across consumer brands"
+  },
+  {
+    "layer": "growth",
+    "t": "High installs, low retention",
+    "k": "+7%",
+    "kl": "D7 retention",
+    "stack": [
+      "CleverTap",
+      "MoEngage"
+    ],
+    "p": "Install numbers looked great, but most users never came back after day one.",
+    "d": [
+      "Redesigned onboarding around the first value moment.",
+      "Re-timed messages to real usage, with behaviour triggers.",
+      "Scaled push, email and in-app as owned growth channels."
+    ],
+    "i": [
+      "D1 retention up ~5%, D7 up ~7%.",
+      "Activation up ~11%, DAU up ~10%."
+    ],
+    "scale": "Consumer app with high install volumes"
+  },
+  {
+    "layer": "growth",
+    "t": "Paid spend growing faster than conversions",
+    "k": "+18%",
+    "kl": "ROAS",
+    "stack": [
+      "Salesforce",
+      "MoEngage",
+      "AppsFlyer"
+    ],
+    "p": "Acquisition budgets scaled, but every user got the same nurture regardless of where they came from.",
+    "d": [
+      "Nurture journeys matched to acquisition cohorts.",
+      "CRM-led reactivation instead of paid retargeting.",
+      "Stage-wise attribution to shift budget between paid and CRM."
+    ],
+    "i": [
+      "ROAS up ~18%.",
+      "Effective CAC down ~12%."
+    ],
+    "scale": "Paid acquisition cohorts during rapid scale-up"
+  }
+]

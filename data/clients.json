@@ -1,0 +1,202 @@
+[
+  {
+    "industry": "QSR & food",
+    "name": "KFC",
+    "sector": "Multi-market quick service restaurant",
+    "stack": [
+      "Braze",
+      "Loyalty",
+      "Gamification"
+    ],
+    "problem": [
+      "App engagement wasn't turning into in-store and kiosk orders.",
+      "Each market ran CRM differently, so wins didn't travel.",
+      "Loyalty had to work across app, kiosk and delivery."
+    ],
+    "built": [
+      "Journeys linking app activity to in-store redemption.",
+      "Reusable templates for faster market rollouts.",
+      "Gamified, loyalty-led campaigns with redemption tracking."
+    ],
+    "measured": [
+      "Redemption rate by channel",
+      "Loyalty enrolment and order frequency",
+      "Time to launch in a new market"
+    ]
+  },
+  {
+    "industry": "C-store & fuel",
+    "name": "Shell",
+    "sector": "North America Mobility & Convenience",
+    "stack": [
+      "Braze",
+      "Snowflake",
+      "Location triggers"
+    ],
+    "problem": [
+      "Customers came for fuel but rarely went into the store.",
+      "Fuel, store and loyalty data sat in separate systems.",
+      "Promotions weren't timed to the visit."
+    ],
+    "built": [
+      "Single customer view feeding Braze from the warehouse.",
+      "Visit- and location-triggered offers to move forecourt traffic in-store.",
+      "Segments built on visit frequency and basket."
+    ],
+    "measured": [
+      "Forecourt-to-store conversion",
+      "Basket size and visit frequency",
+      "Loyalty-identified transactions"
+    ]
+  },
+  {
+    "industry": "Banking & finance",
+    "name": "Zerion",
+    "sector": "Web3 wallet and DeFi platform",
+    "stack": [
+      "Braze",
+      "Event schema",
+      "Onboarding"
+    ],
+    "problem": [
+      "New wallet users dropped before their first meaningful action.",
+      "Product events weren't structured for CRM use.",
+      "Tight timeline to go live."
+    ],
+    "built": [
+      "Event and attribute schema for lifecycle messaging.",
+      "Onboarding journeys guiding users to first transaction.",
+      "Phased launch to deliver value within weeks."
+    ],
+    "measured": [
+      "Wallet activation rate",
+      "Time to first transaction",
+      "Early-life retention"
+    ]
+  },
+  {
+    "industry": "Retail & eCommerce",
+    "name": "Back Market",
+    "sector": "Refurbished electronics marketplace",
+    "stack": [
+      "Braze",
+      "Segmentation",
+      "Personalisation"
+    ],
+    "problem": [
+      "Long gaps between purchases made customers forget the brand.",
+      "Broad sends with declining engagement.",
+      "Little personalisation by device owned."
+    ],
+    "built": [
+      "Post-purchase journeys for accessories, care and trade-in.",
+      "Segments by category and device lifecycle.",
+      "Win-back timed to upgrade cycles."
+    ],
+    "measured": [
+      "Repeat purchase rate",
+      "Conversion per journey",
+      "CRM-attributed revenue"
+    ]
+  },
+  {
+    "industry": "Gaming & media",
+    "name": "Creative Assembly",
+    "sector": "Video game studio",
+    "stack": [
+      "Braze",
+      "Player data",
+      "Reactivation"
+    ],
+    "problem": [
+      "Player data fragmented across titles and platforms.",
+      "Lapsed players got the same messages as active ones.",
+      "Hard to tie comms to in-game engagement."
+    ],
+    "built": [
+      "Unified player profiles for cross-title segments.",
+      "Journeys by player stage: new, active, lapsing, lapsed.",
+      "Event-triggered messages on in-game milestones."
+    ],
+    "measured": [
+      "Returning player rate",
+      "Engagement around releases",
+      "Cross-title play"
+    ]
+  },
+  {
+    "industry": "Travel & hospitality",
+    "name": "FIVE Hotels",
+    "sector": "Luxury hotels and resorts, Dubai",
+    "stack": [
+      "Braze",
+      "Guest journeys",
+      "Direct booking"
+    ],
+    "problem": [
+      "Guests booked through OTAs, so the hotel owned little of the relationship.",
+      "Minimal pre-arrival and post-stay contact.",
+      "Guest data split across booking and property systems."
+    ],
+    "built": [
+      "Pre-arrival, in-stay and post-stay journeys.",
+      "Upsell moments for dining, spa and experiences.",
+      "Re-booking journeys to grow direct bookings."
+    ],
+    "measured": [
+      "Direct booking share",
+      "Ancillary revenue per stay",
+      "Repeat stay rate"
+    ]
+  },
+  {
+    "industry": "Wellness",
+    "name": "Huckleberry",
+    "sector": "Family sleep and parenting app",
+    "stack": [
+      "Braze",
+      "AI personalisation",
+      "Freemium"
+    ],
+    "problem": [
+      "Free users weren't reaching the moment premium felt essential.",
+      "Parents' needs change fast as a child ages.",
+      "Generic content didn't match each family's stage."
+    ],
+    "built": [
+      "Age- and stage-based lifecycle journeys.",
+      "Upgrade prompts at high-intent moments.",
+      "Trial-to-paid journeys with value reminders."
+    ],
+    "measured": [
+      "Free-to-premium conversion",
+      "Trial conversion",
+      "Subscriber retention"
+    ]
+  },
+  {
+    "industry": "Spa franchise",
+    "name": "Hand & Stone",
+    "sector": "Massage and facial spa franchise, US",
+    "stack": [
+      "CRM",
+      "Membership",
+      "Franchise data"
+    ],
+    "problem": [
+      "Membership drives revenue, and early churn erodes it.",
+      "Hundreds of locations, each with its own data and booking patterns.",
+      "First-visit guests weren't consistently converted to members."
+    ],
+    "built": [
+      "Intro-visit to membership conversion journeys.",
+      "Churn-risk signals from booking gaps and unused credits.",
+      "Location-aware messaging for franchisees."
+    ],
+    "measured": [
+      "First visit to membership conversion",
+      "Member retention",
+      "Rebooking rate per location"
+    ]
+  }
+]

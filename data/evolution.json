@@ -1,0 +1,68 @@
+[
+  {
+    "stage": "Business analyst",
+    "years": "2021 to 2022",
+    "scope": "Process",
+    "q": "How does go-to-market actually run across teams?",
+    "did": [
+      "Gathered business requirements and turned them into CRM and campaign workflows",
+      "Introduced RAID and RACI governance across many stakeholders",
+      "Consolidated scattered campaign reporting into one view"
+    ],
+    "skills": [
+      "Requirements",
+      "GTM workflows",
+      "Governance",
+      "Dashboards",
+      "Salesforce",
+      "Braze"
+    ],
+    "metric": "−20%",
+    "ml": "rework",
+    "roles": "Capgemini"
+  },
+  {
+    "stage": "Hands-on CRM expert",
+    "years": "2022 to 2025",
+    "scope": "Platforms",
+    "q": "How do I make the CRM itself drive conversion and retention?",
+    "did": [
+      "Built lifecycle journeys, lead routing and SLA automation hands-on",
+      "Designed segmentation, deep linking and cross-channel orchestration",
+      "Led Salesforce and HubSpot migrations onto Braze for global brands"
+    ],
+    "skills": [
+      "Braze",
+      "Salesforce",
+      "MoEngage",
+      "CleverTap",
+      "HubSpot",
+      "Segmentation",
+      "Lead ops"
+    ],
+    "metric": "+20%",
+    "ml": "MQL to SQL",
+    "roles": "AppsForBharat, NoBroker, Massive Rocket"
+  },
+  {
+    "stage": "Martech enabler",
+    "years": "2026 to now",
+    "scope": "Business outcomes",
+    "q": "Which systems should exist, and what are they worth to the business?",
+    "did": [
+      "Own the martech roadmap across acquisition, onboarding and retention",
+      "Connect CRM, data and tracking so personalisation stays compliant",
+      "Rank every initiative by expected impact on activation, conversion and retention"
+    ],
+    "skills": [
+      "Martech roadmap",
+      "Data integration",
+      "KPI design",
+      "Stakeholder alignment",
+      "Compliance"
+    ],
+    "metric": "5 teams",
+    "ml": "on one roadmap",
+    "roles": "Global fintech group"
+  }
+]

@@ -1,0 +1,236 @@
+{
+  "name": "Vishnu Bajpai",
+  "photo": "assets/img/profile.jpg",
+  "rotate": [
+    "I turn CRM data into revenue.",
+    "I build lifecycle journeys that keep customers.",
+    "I turn MQLs into pipeline sales can close.",
+    "I connect martech stacks so data flows end to end.",
+    "I align marketing, sales and product on one GTM engine.",
+    "I migrate and scale CRM platforms without losing momentum."
+  ],
+  "subhead": "Martech, RevOps and growth. Currently Martech Manager at a global fintech group.",
+  "intro": "I work where CRM, marketing and technology meet. For 5+ years I've built lifecycle journeys on <b class=\"hl-braze\">Braze</b>, lead and pipeline operations on <b class=\"hl-sf\">Salesforce</b>, and the <b>RevOps and martech</b> plumbing that connects marketing, sales, product and data, contributing to <b>₹20Cr+ in revenue impact</b>.",
+  "pillars": [
+    "Martech strategy",
+    "Revenue operations",
+    "Lifecycle CRM",
+    "Growth"
+  ],
+  "splash": [
+    "Hi, I'm Vishnu."
+  ],
+  "openTo": "Open to Martech, RevOps and Growth leadership roles",
+  "contact": {
+    "email": "vishnubajpai30@gmail.com",
+    "phone": "+91 99533 38180",
+    "linkedin": "https://www.linkedin.com/in/vishnu-bajpai",
+    "location": "Bengaluru, India"
+  },
+  "uplift": {
+    "title": "What fixing the funnel was worth",
+    "note": "Each stage indexed to 100 before the fix. Bars show the change after it; axis starts at 70 so the gain is visible.",
+    "stages": [
+      {
+        "name": "Acquire",
+        "problem": "Paid spend outpacing conversions",
+        "metric": "Effective CAC",
+        "lift": -12,
+        "goodDown": true,
+        "scale": "paid acquisition cohorts"
+      },
+      {
+        "name": "Activate",
+        "problem": "Installs that never reach first value",
+        "metric": "Activation",
+        "lift": 11
+      },
+      {
+        "name": "Convert",
+        "problem": "MQLs that never become pipeline",
+        "metric": "MQL to SQL",
+        "lift": 20
+      },
+      {
+        "name": "Retain",
+        "problem": "Customers who buy once",
+        "metric": "Repeat purchases",
+        "lift": 18
+      },
+      {
+        "name": "Expand",
+        "problem": "Revenue per customer flat",
+        "metric": "Customer LTV",
+        "lift": 12
+      }
+    ]
+  },
+  "stats": [
+    {
+      "v": "₹20Cr+",
+      "l": "revenue impact contributed",
+      "gold": true
+    },
+    {
+      "v": "5+ yrs",
+      "l": "across martech, RevOps and CRM"
+    },
+    {
+      "v": "95%+",
+      "l": "on-time delivery across concurrent programmes"
+    },
+    {
+      "v": "11",
+      "l": "industries, from trading to QSR"
+    }
+  ],
+  "impacts": [
+    {
+      "p": "Leads going cold before sales called",
+      "m": "Lead response time",
+      "v": -35,
+      "s": "high-intent leads in a fast-scaling PropTech funnel"
+    },
+    {
+      "p": "Personalisation starved of data",
+      "m": "Segmentation accuracy",
+      "v": 35,
+      "s": "warehouse data piped into Braze for multiple brands"
+    },
+    {
+      "p": "Slow test-and-learn cycles",
+      "m": "Optimisation turnaround",
+      "v": -30,
+      "s": "onboarding, engagement and retention funnels"
+    },
+    {
+      "p": "Lapsed users bought back with paid ads",
+      "m": "Organic re-engagement",
+      "v": 25,
+      "s": "churned users across email, push, WhatsApp and in-app"
+    },
+    {
+      "p": "Broad blasts, falling engagement",
+      "m": "Click-through rate",
+      "v": 22,
+      "s": "behaviour-based segments for global retail and QSR brands"
+    },
+    {
+      "p": "MQLs stuck before sales",
+      "m": "MQL-to-SQL conversion",
+      "v": 20,
+      "s": "inbound leads during rapid scale-up"
+    },
+    {
+      "p": "Customers buying once, never twice",
+      "m": "Repeat purchases",
+      "v": 18,
+      "s": "loyalty and win-back journeys for global consumer brands"
+    },
+    {
+      "p": "Ambiguous requirements, constant rework",
+      "m": "Sprint rework",
+      "v": -20,
+      "s": "concurrent client programmes"
+    }
+  ],
+  "skills": {
+    "Revenue operations": [
+      "Revenue operations (RevOps)",
+      "GTM operations",
+      "Lead management",
+      "Lead scoring",
+      "Lead routing",
+      "MQL to SQL conversion",
+      "Sales SLA workflows",
+      "Pipeline reporting",
+      "Funnel analytics",
+      "Multi-touch attribution",
+      "CAC, ROAS and LTV optimisation",
+      "Sales and marketing alignment"
+    ],
+    "Marketing technology": [
+      "Martech stack management",
+      "Martech roadmap",
+      "Marketing operations",
+      "Customer data integration",
+      "Data pipelines",
+      "CDP and warehouse sync",
+      "Event tracking and taxonomy",
+      "Deep linking",
+      "CRM migration",
+      "Platform implementation",
+      "Vendor evaluation"
+    ],
+    "CRM and lifecycle": [
+      "Lifecycle marketing",
+      "CRM marketing",
+      "Marketing automation",
+      "Customer journey orchestration",
+      "Onboarding journeys",
+      "Retention and win-back",
+      "Reactivation campaigns",
+      "Loyalty programmes",
+      "Segmentation",
+      "Personalisation",
+      "Omnichannel: email, push, SMS, WhatsApp, in-app"
+    ],
+    "Growth and analytics": [
+      "Growth marketing",
+      "Activation and retention",
+      "Conversion rate optimisation",
+      "A/B testing and experimentation",
+      "Holdout testing",
+      "KPI and OKR design",
+      "Cohort analysis",
+      "Dashboarding and reporting"
+    ],
+    "Braze": [
+      "Braze Canvas",
+      "Canvas Flow",
+      "Liquid personalisation",
+      "Connected Content",
+      "Braze Currents",
+      "Cloud Data Ingestion",
+      "Segment Extensions",
+      "Intelligent Timing",
+      "Content Cards",
+      "Catalogs"
+    ],
+    "Salesforce": [
+      "Salesforce Sales Cloud",
+      "Salesforce Marketing Cloud",
+      "Journey Builder",
+      "Salesforce Flow",
+      "Einstein lead scoring",
+      "Assignment and escalation rules",
+      "Lightning App Builder",
+      "Reports and dashboards",
+      "Campaign influence"
+    ],
+    "Other tools": [
+      "HubSpot",
+      "MoEngage",
+      "CleverTap",
+      "Netcore",
+      "AppsFlyer",
+      "Firebase",
+      "Google Analytics",
+      "Tableau",
+      "Metabase",
+      "Kibana",
+      "SQL basics",
+      "JIRA",
+      "Confluence",
+      "Asana"
+    ],
+    "Delivery": [
+      "Agile and Scrum (PSM II)",
+      "Sprint planning",
+      "Backlog management",
+      "RAID and RACI",
+      "Stakeholder management",
+      "Cross-functional leadership"
+    ]
+  }
+}
