@@ -10,13 +10,19 @@ const app=$('#app');
 
 let D;
 try{
- const files=['site','problems','platforms','playbooks','evolution','clients','faq','interactive'];
- const res=await Promise.all(files.map(f=>fetch(`data/${f}.json`,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(f+'.json: '+r.status);return r.json()})));
- D=Object.fromEntries(files.map((f,i)=>[f,res[i]]));
+ const need=['site','problems','platforms','playbooks','evolution','clients','faq'],opt=['interactive'];
+ const get=(f,o)=>fetch(`data/${f}.json`,{cache:'no-cache'}).then(r=>{if(!r.ok){if(o)return null;throw new Error('data/'+f+'.json is missing ('+r.status+')')}return r.json().catch(()=>{throw new Error('data/'+f+'.json has a formatting error')})});
+ const res=await Promise.all([...need.map(f=>get(f)),...opt.map(f=>get(f,1))]);
+ D=Object.fromEntries([...need,...opt].map((f,i)=>[f,res[i]]));
 }catch(e){
  app.innerHTML=`<div class="loading"><div class="err"><b>Content couldn't load.</b><p>${esc(e.message)}</p><p>Run <code>python3 -m http.server</code> in this folder and open <code>http://localhost:8000</code>, or view the site on GitHub Pages.</p></div></div>`;return;
 }
-const S=D.site,LAY={martech:'Martech',revops:'RevOps',crm:'CRM and lifecycle',growth:'Growth'};
+const S=D.site;
+if(!S.statements||!S.statements.length)S.statements=(S.rotate||[S.subhead||S.name]).map(h=>({h,s:''}));
+if(!D.interactive)D.interactive={diagnose:[],calc:{models:[],note:''},fit:{terms:[],gaps:[],sample:'',note:''}};
+D.interactive.fit=D.interactive.fit||{terms:[],gaps:[],sample:'',note:''};
+try{
+const LAY={martech:'Martech',revops:'RevOps',crm:'CRM and lifecycle',growth:'Growth'};
 
 /* ---------- Splash ---------- */
 (function(){let seen=false;try{seen=sessionStorage.getItem('vb-intro')}catch(e){}
@@ -123,7 +129,7 @@ app.innerHTML=`
 </div></section>
 <section class="s" id="skills"><div class="wrap">
  <div class="shead"><h2>Skills and keywords</h2><p>The full list, in the terms job descriptions use.</p></div>
- <div class="skills">${Object.entries(S.skills||{}).map(([g,a])=>`<div><h3>${esc(g)}</h3><p>${a.map(esc).join(', ')}</p></div>`).join('')}</div>
+ <div class="skills">${Object.entries(S.skills||{}).map(([g,a])=>`<div><h3>${esc(g)}</h3><p>${a.map(t=>`<span class="sk">${esc(t)}</span>`).join('')}</p></div>`).join('')}</div>
 </div></section>
 </main>
 
@@ -219,7 +225,7 @@ function calcOut(){const m=CM[cmI],g=k=>vals[m.id+k]??m.inputs.find(i=>i.k===k).
  <div class="crow"><div><b class="num">${fmt(mo,cur)}</b><span>extra per month</span></div><div><b class="num">${Math.round(extraU).toLocaleString()}</b><span>${unit}</span></div></div>
  <div class="cbar"><i style="width:${base/after*100}%"></i><i class="gain" style="width:${(after-base)/after*100}%"></i></div><div class="cleg"><span>Today ${fmt(base,cur)}/mo</span><span class="g">After ${fmt(after,cur)}/mo</span></div>
  <a class="btn sm" href="mailto:${S.contact.email}?subject=${encodeURIComponent('Let\'s talk about '+m.liftLabel)}">Talk to me about this</a>`}
-$$('.cmodels [data-m]').forEach(b=>b.onclick=()=>{cmI=+b.dataset.m;renderCalc()});$('#cur').onchange=calcOut;renderCalc();
+$$('.cmodels [data-m]').forEach(b=>b.onclick=()=>{cmI=+b.dataset.m;renderCalc()});$('#cur').onchange=calcOut;if(CM.length)renderCalc();
 
 /* ---------- Problem board ---------- */
 const pl=$('#plist'),pd=$('#pdet');
@@ -301,6 +307,63 @@ document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');i
  e.preventDefault();t.scrollIntoView({behavior:RM?'auto':'smooth'});nav.classList.remove('open');mb.setAttribute('aria-expanded','false')});
 mb.onclick=()=>mb.setAttribute('aria-expanded',nav.classList.toggle('open'));
 if(location.hash){const t=document.getElementById(location.hash.slice(1));if(t)setTimeout(()=>t.scrollIntoView(),50)}
+
+/* ================= Motion layer ================= */
+const NOW=()=>Date.now(),desk=()=>innerWidth>=1000;
+
+/* Scroll reveals with stagger */
+document.documentElement.classList.add('js');
+const RVSEL=['.shead p','.big4>div','.ring','.tt','.syms button','.plist li','.ptabs button','.feat','.solved li','.ech','.ind-tabs button','.skills>div','.links a','.ask'];
+if(!RM){const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -6% 0px'});
+ RVSEL.forEach(sel=>{const g=new Map();$$(sel).forEach(el=>{const k=el.parentElement;const n=g.get(k)||0;g.set(k,n+1);el.classList.add('rvl');el.style.setProperty('--d',Math.min(n,10)*60+'ms');rio.observe(el)})});
+ setTimeout(()=>$$('.rvl:not(.in)').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('in')}),1500);
+ const observeNew=root=>{$$('.feat,.solved li',root).forEach((el,n)=>{el.classList.add('rvl');el.style.setProperty('--d',Math.min(n,10)*50+'ms');requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')))})};
+ const _showPl=showPl;window.__obsPl=()=>observeNew($('#ppanel'));
+}
+
+/* Section headings: word-by-word reveal */
+if(!RM){const hio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');hio.unobserve(e.target)}}),{threshold:.4});
+ $$('.shead h2, .contact h2').forEach(h=>{h.innerHTML=h.textContent.split(' ').map((w,i)=>`<span class="w" style="--d:${i*70}ms"><span>${esc(w)}</span></span>`).join(' ');h.classList.add('wrv');hio.observe(h)})}
+
+/* Auto-play while a section is on screen; any click or key in it hands control to the visitor */
+function autoplay(secId,next,ms,cond){const sec=document.getElementById(secId);if(!sec||RM)return;let vis=false,hold=0,t0=NOW();
+ const head=$('.shead',sec),bar=document.createElement('div');bar.className='cyc';bar.innerHTML='<span class="cyc-t">Auto-playing</span><span class="cyc-b"><i></i></span><button type="button" class="cyc-x">Pause</button>';head.appendChild(bar);
+ let paused=false;const btn=$('.cyc-x',bar);btn.onclick=e=>{e.stopPropagation();paused=!paused;btn.textContent=paused?'Play':'Pause';bar.classList.toggle('off',paused);t0=NOW();hold=0};
+ const restart=()=>{const i=$('i',bar);i.style.animation='none';void i.offsetWidth;i.style.animation=`cyc ${ms}ms linear forwards`};
+ new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis){t0=NOW();restart()}}),{threshold:.35}).observe(sec);
+ sec.addEventListener('pointerdown',e=>{if(e.target.closest('.cyc'))return;hold=NOW();bar.classList.add('off');$('.cyc-t',bar).textContent='Paused while you explore'},true);
+ setInterval(()=>{const ok=vis&&!paused&&(!cond||cond());bar.hidden=!(!cond||cond());if(!ok)return;
+  if(hold&&NOW()-hold<15000)return;if(hold){hold=0;bar.classList.remove('off');$('.cyc-t',bar).textContent='Auto-playing';t0=NOW();restart();return}
+  if(NOW()-t0>=ms){next();t0=NOW();restart()}},250)}
+autoplay('problems',()=>{const vis=$$('#plist li').filter(x=>!x.hidden),cur=vis.findIndex(x=>x.getAttribute('aria-selected')==='true');const n=vis[(cur+1)%vis.length];if(n)showP(+n.dataset.i)},6500,desk);
+autoplay('platforms',()=>{const n=D.platforms.platforms.length,cur=$$('.ptabs button').findIndex(b=>b.getAttribute('aria-selected')==='true');showPl((cur+1)%n);window.__obsPl&&window.__obsPl()},7000);
+autoplay('blueprints',()=>{const nodes=$$('.node',$('#pbMain')),cur=nodes.findIndex(n=>n.getAttribute('aria-pressed')==='true');if(cur<nodes.length-1)step(cur+1);else showPb((pbI+1)%D.playbooks.length)},2600);
+autoplay('clients',()=>{const n=D.clients.length,cur=$$('#indTabs button').findIndex(b=>b.getAttribute('aria-selected')==='true');showClient((cur+1)%n)},6000);
+$$('.ptabs button').forEach(b=>b.addEventListener('click',()=>window.__obsPl&&window.__obsPl()));
+
+/* Uplift chart replays each time it comes back into view */
+let upSeen=false;new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&upSeen&&!RM){setFix(0);setTimeout(play,250)}if(!e.isIntersecting&&e.boundingClientRect.top>0)upSeen=true;if(e.isIntersecting)upSeen=true}),{threshold:.5}).observe($('#uplift'));
+
+/* Evolution: scope grows as you scroll through it */
+const evo=$('.evo');if(evo){const chs=$$('.ech',evo);evo.insertAdjacentHTML('afterbegin','<div class="evo-track" aria-hidden="true"><i></i></div>');const fill=$('.evo-track i',evo);
+ const onS=()=>{const r=evo.getBoundingClientRect(),vh=innerHeight,p=Math.min(Math.max((vh*.75-r.top)/(r.height*.9),0),1);fill.style.width=(p*100)+'%';
+  chs.forEach((c,i)=>c.classList.toggle('act',p>=i/3+.05||RM))};addEventListener('scroll',onS,{passive:true});onS()}
+
+/* Portrait tilt */
+const pt=$('.portrait');if(pt&&!RM&&matchMedia('(hover:hover)').matches){const h=$('.hero');h.addEventListener('pointermove',e=>{const r=pt.getBoundingClientRect(),x=(e.clientX-(r.left+r.width/2))/r.width,y=(e.clientY-(r.top+r.height/2))/r.height;pt.style.transform=`perspective(900px) rotateY(${Math.max(-1,Math.min(1,x))*7}deg) rotateX(${Math.max(-1,Math.min(1,-y))*7}deg)`});h.addEventListener('pointerleave',()=>pt.style.transform='')}
+
+/* Skills: live search */
+const sk=$('#skills .skills');if(sk){
+ sk.insertAdjacentHTML('beforebegin','<div class="sksearch"><input id="skq" type="search" placeholder="Search my skills, for example attribution or Braze" aria-label="Search skills"><span id="skn"></span></div>');
+ const all=$$('.sk',sk);$('#skn').textContent=all.length+' skills';
+ $('#skq').oninput=e=>{const q=e.target.value.trim().toLowerCase();let n=0;
+  $$(':scope>div',sk).forEach(g=>{const gm=q&&$('h3',g).textContent.toLowerCase().includes(q);let gh=0;$$('.sk',g).forEach(s=>{const m=q&&(gm||s.textContent.toLowerCase().includes(q));s.classList.toggle('hit',!!m);s.classList.toggle('dim',!!q&&!m);if(m){n++;gh++}});g.hidden=!!q&&!gh});
+  sk.classList.toggle('filtered',!!q);$('#skn').textContent=q?(n?`${n} match${n>1?'es':''}`:'No match. Ask me in the box below.'):all.length+' skills'}}
+
+/* Header shrinks after the hero */
+const hdr=$('header');addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40),{passive:true});
+
+}catch(err){console.error(err);app.innerHTML=`<div class="loading"><div class="err"><b>Something went wrong showing this page.</b><p>${esc(err.message)}</p><p>Make sure every file from the latest zip is uploaded, then hard refresh (Ctrl+Shift+R).</p></div></div>`}
 })();
 
 (function(){const root=document.documentElement;try{const t=localStorage.getItem('vb-theme');if(t)root.dataset.theme=t}catch(e){}
