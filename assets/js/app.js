@@ -10,7 +10,7 @@ const app=$('#app');
 
 let D;
 try{
- const files=['site','problems','platforms','playbooks','evolution','clients','faq'];
+ const files=['site','problems','platforms','playbooks','evolution','clients','faq','interactive'];
  const res=await Promise.all(files.map(f=>fetch(`data/${f}.json`,{cache:'no-cache'}).then(r=>{if(!r.ok)throw new Error(f+'.json: '+r.status);return r.json()})));
  D=Object.fromEntries(files.map((f,i)=>[f,res[i]]));
 }catch(e){
@@ -37,7 +37,9 @@ app.innerHTML=`
  <div class="hero-top">
   <div>
    <a class="pulse" id="pulse" href="#contact"><span class="live"></span><span class="pl-k">Status</span><span class="pl-t">${esc(S.openTo)}</span></a>
-   <h1 aria-label="${esc(S.rotate[0])}"><span class="h1a" aria-hidden="true"><em class="rot" id="rot">${esc(S.rotate[0])}</em></span><span>${esc(S.subhead)}</span></h1>
+   <p class="role">${esc(S.subhead)}</p>
+   <div class="stmt" id="stmt" aria-live="polite"><h1 id="stH">${esc(S.statements[0].h)}</h1><p class="stS" id="stS">${esc(S.statements[0].s)}</p></div>
+   <div class="stdots" role="tablist" aria-label="Statements">${S.statements.map((x,i)=>`<button role="tab" aria-selected="${i===0}" data-i="${i}" aria-label="Statement ${i+1}"><i></i></button>`).join('')}</div>
    <p class="intro">${S.intro}</p>
    <div class="pillars">${S.pillars.map(p=>`<span>${esc(p)}</span>`).join('')}</div>
    <div class="btns"><a class="btn solid" href="#problems">See problems I've solved</a><a class="btn ghost" href="${S.contact.linkedin}" target="_blank" rel="noopener">LinkedIn profile</a></div>
@@ -61,9 +63,27 @@ app.innerHTML=`
  <div class="shead"><h2>Impact, in numbers</h2><p>Problems first, then what changed. Every figure comes from a programme I owned or delivered.</p></div>
  <div class="big4">${S.stats.map(b=>`<div><span class="num odo${b.gold?' gold':''}" data-v="${esc(b.v)}">${esc(b.v)}</span><span>${esc(b.l)}</span></div>`).join('')}</div>
  <div class="rings">${S.impacts.map(x=>{const f=Math.min(Math.abs(x.v)/40,1),C=2*Math.PI*34;return `<div class="ring">
-  <svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" class="rt"/><circle cx="40" cy="40" r="34" class="rf" style="stroke-dasharray:${C};stroke-dashoffset:${C}" data-off="${C*(1-f)}"/></svg>
-  <span class="rv num odo" data-v="${x.v>0?'+':'−'}${Math.abs(x.v)}%">${x.v>0?'+':'−'}${Math.abs(x.v)}%</span>
+  <div class="rw"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="34" class="rt"/><circle cx="40" cy="40" r="34" class="rf" style="stroke-dasharray:${C};stroke-dashoffset:${C}" data-off="${C*(1-f)}"/></svg>
+  <span class="rv num odo" data-v="${x.v>0?'+':'−'}${Math.abs(x.v)}%">${x.v>0?'+':'−'}${Math.abs(x.v)}%</span></div>
   <div><b>${esc(x.p)}</b><small>${esc(x.m)}</small>${x.s?`<small class="rsc">${esc(x.s)}</small>`:''}</div></div>`}).join('')}</div>
+</div></section>
+
+<section class="s" id="tryit"><div class="wrap">
+ <div class="shead"><h2>Try it on your business</h2><p>Two quick tools. Tell me what's hurting, or plug in your numbers, and see how I'd approach it.</p></div>
+ <div class="tt" role="tablist"><button role="tab" aria-selected="true" data-t="dx">Diagnose your funnel</button><button role="tab" aria-selected="false" data-t="calc">Estimate the impact</button><button role="tab" aria-selected="false" data-t="fit">Check fit with your role</button></div>
+ <div class="tpane" id="t-dx"><p class="tq">What's hurting most right now?</p><div class="syms" id="syms">${D.interactive.diagnose.map((d,i)=>`<button data-i="${i}" aria-pressed="false">${esc(d.sym)}</button>`).join('')}</div><div class="dxout" id="dxout" aria-live="polite"><p class="dxhint">Pick one to see how I'd tackle it.</p></div></div>
+ <div class="tpane" id="t-calc" hidden>
+  <div class="cmodels">${D.interactive.calc.models.map((m,i)=>`<button data-m="${i}" aria-pressed="${i===0}">${esc(m.name)}</button>`).join('')}<select id="cur" aria-label="Currency"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="GBP">£ GBP</option><option value="EUR">€ EUR</option></select></div>
+  <div class="cgrid2"><div id="cin"></div><div class="cout" id="cout" aria-live="polite"></div></div>
+  <p class="fine2">${esc(D.interactive.calc.note)}</p>
+ </div>
+ <div class="tpane" id="t-fit" hidden>
+  <p class="tq">Paste a job description to see how my experience lines up.</p>
+  <textarea id="jd" rows="7" placeholder="Paste the role's responsibilities and requirements here"></textarea>
+  <div class="fitbtns"><button class="btn sm" id="fitGo">Check fit</button><button class="btn sm ghost2" id="fitSample">Try a sample role</button><span class="fitnote">${esc(D.interactive.fit.note)}</span></div>
+  <p class="fiterr" id="fitErr" role="alert"></p>
+  <div class="fitout" id="fitOut" aria-live="polite"></div>
+ </div>
 </div></section>
 
 <section class="s" id="problems"><div class="wrap">
@@ -132,12 +152,18 @@ fetch('data/news.json',{cache:'no-cache'}).then(r=>r.ok?r.json():null).then(n=>{
   setTimeout(()=>{P.innerHTML=`<span class="live"></span><span class="pl-k">Martech pulse</span><span class="pl-t">${esc(it.title)}</span><span class="pl-s">${esc(it.source)}</span>`;P.classList.remove('swap')},250);k++};
  show();if(!RM)setInterval(show,7000)}).catch(()=>{});
 
-/* ---------- Rotating statements ---------- */
-const rot=$('#rot'),W=S.rotate;
-if(W.length>1&&!RM){let wi=0;
- const type=(w,i=0)=>{rot.textContent=w.slice(0,i);if(i<w.length)setTimeout(()=>type(w,i+1),40);else setTimeout(()=>erase(w,w.length),2600)};
- const erase=(w,i)=>{rot.textContent=w.slice(0,i);if(i>0)setTimeout(()=>erase(w,i-1),16);else{wi=(wi+1)%W.length;type(W[wi])}};
- setTimeout(()=>erase(W[0],W[0].length),3400)}
+/* ---------- Statements ---------- */
+const ST=S.statements;let sti=0,stT;
+function setSt(i){sti=(i+ST.length)%ST.length;const box=$('#stmt');box.classList.add('out');
+ setTimeout(()=>{$('#stH').textContent=ST[sti].h;$('#stS').textContent=ST[sti].s;box.classList.remove('out')},RM?0:280);
+ $$('.stdots button').forEach(b=>{b.setAttribute('aria-selected',b.dataset.i==sti);b.classList.remove('run');if(b.dataset.i==sti&&!RM){void b.offsetWidth;b.classList.add('run')}})}
+const autoSt=()=>{clearInterval(stT);if(!RM)stT=setInterval(()=>setSt(sti+1),6000)};
+$$('.stdots button').forEach(b=>b.onclick=()=>{setSt(+b.dataset.i);autoSt()});
+$('#stmt').addEventListener('mouseenter',()=>clearInterval(stT));$('#stmt').addEventListener('mouseleave',autoSt);
+function fitSt(){const box=$('#stmt'),c=box.cloneNode(true);c.removeAttribute('id');c.style.cssText='position:absolute;visibility:hidden;min-height:0;width:'+box.clientWidth+'px';box.parentNode.appendChild(c);
+ let m=0;ST.forEach(x=>{c.querySelector('h1').textContent=x.h;c.querySelector('.stS').textContent=x.s;m=Math.max(m,c.offsetHeight)});c.remove();box.style.minHeight=m+'px'}
+fitSt();addEventListener('resize',fitSt);if(document.fonts)document.fonts.ready.then(fitSt);
+setSt(0);autoSt();
 
 /* ---------- Uplift chart ---------- */
 const MIN=70,MAX=125,pct=v=>(v-MIN)/(MAX-MIN)*100;
@@ -158,6 +184,42 @@ const oio=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)retur
  $$('.ods',e.target).forEach((s,i)=>{s.style.transitionDelay=(i*120)+'ms';s.style.transform=`translateY(-${10+ +s.dataset.d}em)`});
  const ring=e.target.closest('.ring');if(ring){const c=$('.rf',ring);c.style.strokeDashoffset=c.dataset.off}}),{threshold:.5});
 $$('.odo').forEach(el=>{if(RM){$$('.ods',el).forEach(s=>{s.style.transition='none';s.style.transform=`translateY(-${10+ +s.dataset.d}em)`});const r=el.closest('.ring');if(r){const c=$('.rf',r);c.style.transition='none';c.style.strokeDashoffset=c.dataset.off}}else oio.observe(el)});
+
+/* ---------- Try it ---------- */
+$$('.tt button').forEach(b=>b.onclick=()=>{$$('.tt button').forEach(x=>x.setAttribute('aria-selected',x===b));['dx','calc','fit'].forEach(t=>$('#t-'+t).hidden=b.dataset.t!==t)});
+/* Fit check */
+const FT=D.interactive.fit,hit=(txt,al)=>al.some(a=>{const re=new RegExp('(^|[^a-z0-9])'+a.replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&')+'($|[^a-z0-9])','i');return re.test(txt)});
+function runFit(){const txt=' '+$('#jd').value.toLowerCase()+' ';if($('#jd').value.trim().length<40){$('#fitErr').textContent='Paste a little more of the job description, at least a couple of sentences.';return}
+ $('#fitErr').textContent='';const m=FT.terms.filter(t=>hit(txt,t[1])).map(t=>t[0]),g=FT.gaps.filter(t=>hit(txt,t[1])).map(t=>t[0]);
+ const tot=m.length+g.length,sc=tot?Math.round(m.length/tot*100):0,C=2*Math.PI*52;
+ const rel=D.problems.map((p,i)=>({i,p,n:[p.t,p.p,...p.d,...(p.stack||[])].join(' ').toLowerCase()})).map(o=>({...o,s:FT.terms.filter(t=>m.includes(t[0])&&hit(' '+o.n+' ',t[1])).length})).filter(o=>o.s).sort((a,b)=>b.s-a.s).slice(0,3);
+ $('#fitOut').innerHTML=tot?`<div class="fitgrid"><div class="fitscore"><div class="fsw"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" class="rt"/><circle cx="60" cy="60" r="52" class="rf" style="stroke-dasharray:${C};stroke-dashoffset:${C}" id="fsr"/></svg><b class="num">${sc}%</b></div><span>${m.length} of ${tot} skills and tools this role mentions</span></div>
+ <div><h4>Where I match</h4><div class="fchips">${m.map(x=>`<span class="ok">${esc(x)}</span>`).join('')}</div>${g.length?`<h4>Worth a conversation</h4><div class="fchips">${g.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}
+ ${rel.length?`<h4>Most relevant proof</h4><ul class="frel">${rel.map(o=>`<li><button data-pi="${o.i}">${esc(o.p.t)}</button><b class="num">${esc(o.p.k)}</b></li>`).join('')}</ul>`:''}
+ <a class="btn sm" href="mailto:${S.contact.email}?subject=${encodeURIComponent('Role that matches your experience')}">Send me this role</a></div></div>`:'<p class="dxhint">I couldn\'t find martech, CRM or RevOps terms in that text. Try pasting the requirements section.</p>';
+ const r=$('#fsr');if(r)requestAnimationFrame(()=>requestAnimationFrame(()=>r.style.strokeDashoffset=C*(1-sc/100)));
+ $$('#fitOut [data-pi]').forEach(b=>b.onclick=()=>{go('problems');showP(+b.dataset.pi)})}
+$('#fitGo').onclick=runFit;$('#fitSample').onclick=()=>{$('#jd').value=FT.sample;runFit()};$('#jd').oninput=()=>{$('#fitErr').textContent=''};
+const DX=D.interactive.diagnose;
+$$('#syms button').forEach(b=>b.onclick=()=>{$$('#syms button').forEach(x=>x.setAttribute('aria-pressed',x===b));const d=DX[b.dataset.i],p=D.problems[d.p],bp=d.b!=null?D.playbooks[d.b]:null;
+ $('#dxout').innerHTML=`<div class="dxr"><div class="dxa"><span class="dxl">What I've seen work</span><h3>${esc(p.t)}</h3><p>${esc(p.p)}</p><div class="dxm"><b class="num">${esc(p.k)}</b><span>${esc(p.kl)}</span></div>
+ <div class="dxbtns"><button class="btn sm" data-go="p" data-i="${d.p}">Read the full case</button>${bp?`<button class="btn sm ghost2" data-go="b" data-i="${d.b}">Blueprint: ${esc(bp.name)}</button>`:''}</div></div>
+ <div class="dxp"><span class="dxl">How I'd run the first 90 days</span><ol>${d.plan.map(x=>{const [w,...t]=x.split(': ');const tx=t.join(': ');return `<li><b>${esc(w)}</b>${esc(tx.charAt(0).toUpperCase()+tx.slice(1))}</li>`}).join('')}</ol></div></div>`;
+ $$('#dxout [data-go]').forEach(g=>g.onclick=()=>{if(g.dataset.go==='p'){go('problems');showP(+g.dataset.i)}else{go('blueprints');showPb(+g.dataset.i)}})});
+const CM=D.interactive.calc.models;let cmI=0;const vals={};
+const fmt=(n,cur)=>{try{return new Intl.NumberFormat(cur==='INR'?'en-IN':'en-GB',{style:'currency',currency:cur,maximumFractionDigits:0,notation:Math.abs(n)>=1e7?'compact':'standard'}).format(n)}catch(e){return Math.round(n).toLocaleString()}};
+function renderCalc(){const m=CM[cmI];$$('.cmodels [data-m]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.m==cmI));
+ $('#cin').innerHTML=m.inputs.map(x=>{const v=vals[m.id+x.k]??x.v;return `<label class="cin"><span>${esc(x.l)}</span><div><input type="range" min="${x.min}" max="${x.max}" step="${x.step}" value="${v}" data-k="${x.k}"><input type="number" min="${x.min}" max="${x.max}" step="${x.step}" value="${v}" data-k="${x.k}" aria-label="${esc(x.l)}"><em>${x.pct?'%':''}</em></div></label>`}).join('');
+ $$('#cin input').forEach(inp=>inp.oninput=()=>{let v=+inp.value;const x=m.inputs.find(i=>i.k===inp.dataset.k);if(isNaN(v))return;v=Math.min(Math.max(v,x.min),x.max);vals[m.id+x.k]=v;$$(`#cin input[data-k="${x.k}"]`).forEach(o=>{if(o!==inp)o.value=v});calcOut()});calcOut()}
+function calcOut(){const m=CM[cmI],g=k=>vals[m.id+k]??m.inputs.find(i=>i.k===k).v,cur=$('#cur').value;let base,after,unit,extraU,mo;
+ if(m.id==='leads'){const won=g('leads')*g('sql')/100*g('win')/100;base=won*g('deal');extraU=won*m.lift;after=base+extraU*g('deal');unit='extra closed deals a month'}
+ else{const rep=g('cust')*g('rep')/100;base=rep*g('aov');extraU=rep*m.lift;after=base+extraU*g('aov');unit='extra repeat orders a month'}
+ mo=after-base;
+ $('#cout').innerHTML=`<span class="dxl">With ${esc(m.liftLabel)}</span><div class="cbig num">${fmt(mo*12,cur)}</div><span class="csub">extra revenue a year</span>
+ <div class="crow"><div><b class="num">${fmt(mo,cur)}</b><span>extra per month</span></div><div><b class="num">${Math.round(extraU).toLocaleString()}</b><span>${unit}</span></div></div>
+ <div class="cbar"><i style="width:${base/after*100}%"></i><i class="gain" style="width:${(after-base)/after*100}%"></i></div><div class="cleg"><span>Today ${fmt(base,cur)}/mo</span><span class="g">After ${fmt(after,cur)}/mo</span></div>
+ <a class="btn sm" href="mailto:${S.contact.email}?subject=${encodeURIComponent('Let\'s talk about '+m.liftLabel)}">Talk to me about this</a>`}
+$$('.cmodels [data-m]').forEach(b=>b.onclick=()=>{cmI=+b.dataset.m;renderCalc()});$('#cur').onchange=calcOut;renderCalc();
 
 /* ---------- Problem board ---------- */
 const pl=$('#plist'),pd=$('#pdet');
@@ -206,7 +268,7 @@ $('#askForm').onsubmit=e=>{e.preventDefault();const q=$('#askIn').value.toLowerC
  const h=D.faq.find(f=>f.keywords.some(k=>q.includes(k)));ans.textContent=h?h.a:`No ready answer for that one. Email ${S.contact.email} and I'll reply personally.`};
 
 /* ---------- Command palette ---------- */
-const SEC=[['impact','Impact'],['problems',"Problems I've solved"],['platforms','Platform depth'],['blueprints','Blueprints'],['evolution','How my scope grew'],['clients','Client portfolio'],['skills','Skills and keywords'],['contact','Contact']];
+const SEC=[['impact','Impact'],['tryit','Try it'],['problems',"Problems I've solved"],['platforms','Platform depth'],['blueprints','Blueprints'],['evolution','How my scope grew'],['clients','Client portfolio'],['skills','Skills and keywords'],['contact','Contact']];
 const items=[...SEC.map(([id,t])=>({t,k:'Section',go:()=>go(id)})),
  ...D.problems.map((p,i)=>({t:p.t,k:LAY[p.layer],go:()=>{go('problems');showP(i)}})),
  ...D.platforms.platforms.map((p,i)=>({t:p.id,k:'Platform',go:()=>{go('platforms');showPl(i)}})),

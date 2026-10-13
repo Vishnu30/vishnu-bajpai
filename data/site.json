@@ -1,14 +1,6 @@
 {
   "name": "Vishnu Bajpai",
   "photo": "assets/img/profile.jpg",
-  "rotate": [
-    "I turn CRM data into revenue.",
-    "I build lifecycle journeys that keep customers.",
-    "I turn MQLs into pipeline sales can close.",
-    "I connect martech stacks so data flows end to end.",
-    "I align marketing, sales and product on one GTM engine.",
-    "I migrate and scale CRM platforms without losing momentum."
-  ],
   "subhead": "Martech, RevOps and growth. Currently Martech Manager at a global fintech group.",
   "intro": "I work where CRM, marketing and technology meet. For 5+ years I've built lifecycle journeys on <b class=\"hl-braze\">Braze</b>, lead and pipeline operations on <b class=\"hl-sf\">Salesforce</b>, and the <b>RevOps and martech</b> plumbing that connects marketing, sales, product and data, contributing to <b>₹20Cr+ in revenue impact</b>.",
   "pillars": [
@@ -232,5 +224,31 @@
       "Stakeholder management",
       "Cross-functional leadership"
     ]
-  }
+  },
+  "statements": [
+    {
+      "h": "I build the systems that turn acquisition spend into retained revenue.",
+      "s": "Lifecycle CRM on Braze, pipeline operations on Salesforce, and the data that connects them."
+    },
+    {
+      "h": "I get marketing, sales and product running on one go-to-market engine.",
+      "s": "Shared funnel definitions, clean hand-offs and one roadmap ranked by business impact."
+    },
+    {
+      "h": "I find where revenue leaks between teams, tools and data, and close it.",
+      "s": "MQL to SQL up 20%, lead response time down 35%, effective CAC down 12%."
+    },
+    {
+      "h": "I turn martech stacks into growth infrastructure, not tool sprawl.",
+      "s": "Roadmaps, integrations and platform migrations that ship on time, 95%+ of the time."
+    },
+    {
+      "h": "I design customer journeys that earn the second purchase, not just the first.",
+      "s": "Onboarding, loyalty and win-back journeys that lifted repeat purchases 18% and LTV 12%."
+    },
+    {
+      "h": "I connect customer data to every channel, so personalisation actually works.",
+      "s": "Warehouse-to-CRM pipelines and event design that improved segmentation accuracy 35%."
+    }
+  ]
 }

@@ -1,0 +1,666 @@
+{
+  "diagnose": [
+    {
+      "sym": "Leads go cold before sales calls them",
+      "p": 2,
+      "b": 1,
+      "metric": "Lead response time −35%",
+      "plan": [
+        "Weeks 1 to 2: map lead flow from form to first call and measure time-to-first-touch by source.",
+        "Weeks 3 to 6: instant acknowledgement, routing by capacity, SLA timers with escalation.",
+        "Weeks 7 to 12: nurture for not-yet-ready leads and a response-time dashboard for sales leads."
+      ]
+    },
+    {
+      "sym": "MQLs pile up but pipeline doesn't grow",
+      "p": 1,
+      "b": 1,
+      "metric": "MQL to SQL +20%",
+      "plan": [
+        "Weeks 1 to 2: agree MQL and SQL definitions with sales and audit current scoring.",
+        "Weeks 3 to 6: rebuild scoring and routing; add stage owners.",
+        "Weeks 7 to 12: stage-wise conversion reporting and a feedback loop from sales to marketing."
+      ]
+    },
+    {
+      "sym": "Users install or sign up, then never activate",
+      "p": 10,
+      "b": 0,
+      "metric": "Activation +11%, D7 +7%",
+      "plan": [
+        "Weeks 1 to 2: define the activation event and find where new users drop.",
+        "Weeks 3 to 6: onboarding journey around one next step, with behaviour triggers.",
+        "Weeks 7 to 12: test timing and content with holdouts; scale what lifts D7."
+      ]
+    },
+    {
+      "sym": "Customers buy once and disappear",
+      "p": 8,
+      "b": 2,
+      "metric": "Repeat purchases +18%",
+      "plan": [
+        "Weeks 1 to 2: measure time to second purchase and segment by first-order behaviour.",
+        "Weeks 3 to 6: post-purchase, cross-sell and reorder journeys.",
+        "Weeks 7 to 12: win-back with holdout-tested offers; AOV and LTV reporting."
+      ]
+    },
+    {
+      "sym": "We pay to re-acquire users we already had",
+      "p": 9,
+      "b": 3,
+      "metric": "Inactive users −17%",
+      "plan": [
+        "Weeks 1 to 2: define dormancy tiers by recency and value.",
+        "Weeks 3 to 6: automated reactivation per tier across owned channels.",
+        "Weeks 7 to 12: suppress unrecoverable users from paid and measure incremental lift."
+      ]
+    },
+    {
+      "sym": "Our customer data never reaches the CRM",
+      "p": 5,
+      "b": null,
+      "metric": "Segmentation accuracy +35%",
+      "plan": [
+        "Weeks 1 to 2: list the attributes and events each priority journey needs.",
+        "Weeks 3 to 6: warehouse-to-CRM pipeline with engineering; clean event taxonomy.",
+        "Weeks 7 to 12: launch behaviour-triggered journeys on the new data."
+      ]
+    },
+    {
+      "sym": "We can't tell which spend drives revenue",
+      "p": 11,
+      "b": null,
+      "metric": "ROAS +18%, CAC −12%",
+      "plan": [
+        "Weeks 1 to 2: connect acquisition source to CRM stages and revenue.",
+        "Weeks 3 to 6: cohort-matched nurture and stage-wise attribution reporting.",
+        "Weeks 7 to 12: shift budget between paid and CRM based on the new view."
+      ]
+    },
+    {
+      "sym": "Too many tools and no martech roadmap",
+      "p": 7,
+      "b": null,
+      "metric": "5 teams on one plan",
+      "plan": [
+        "Weeks 1 to 2: inventory tools, owners, costs and open requests.",
+        "Weeks 3 to 6: KPI-ranked roadmap agreed with marketing, product, data and compliance.",
+        "Weeks 7 to 12: intake process, release cadence and integration fixes."
+      ]
+    },
+    {
+      "sym": "We're planning a CRM migration",
+      "p": 6,
+      "b": 4,
+      "metric": "Deployment time −15%",
+      "plan": [
+        "Weeks 1 to 2: audit objects, lists and workflows; decide keep or kill.",
+        "Weeks 3 to 6: schema mapping and real-time journey rebuilds.",
+        "Weeks 7 to 12: warm-up, parallel runs and cutover with sign-off."
+      ]
+    }
+  ],
+  "calc": {
+    "note": "Illustrative only. Applies the relative lifts I've delivered before to your inputs; real results depend on your starting point.",
+    "models": [
+      {
+        "id": "leads",
+        "name": "Lead-driven business",
+        "lift": 0.2,
+        "liftLabel": "MQL to SQL +20%",
+        "inputs": [
+          {
+            "k": "leads",
+            "l": "Qualified leads (MQLs) per month",
+            "v": 2000,
+            "min": 100,
+            "max": 50000,
+            "step": 100
+          },
+          {
+            "k": "sql",
+            "l": "MQL to SQL rate",
+            "v": 15,
+            "min": 1,
+            "max": 60,
+            "step": 1,
+            "pct": true
+          },
+          {
+            "k": "win",
+            "l": "SQL to closed-won rate",
+            "v": 20,
+            "min": 1,
+            "max": 80,
+            "step": 1,
+            "pct": true
+          },
+          {
+            "k": "deal",
+            "l": "Average deal value",
+            "v": 50000,
+            "min": 1000,
+            "max": 5000000,
+            "step": 1000,
+            "money": true
+          }
+        ]
+      },
+      {
+        "id": "repeat",
+        "name": "Consumer app or eCommerce",
+        "lift": 0.18,
+        "liftLabel": "Repeat purchases +18%",
+        "inputs": [
+          {
+            "k": "cust",
+            "l": "Customers buying each month",
+            "v": 20000,
+            "min": 500,
+            "max": 2000000,
+            "step": 500
+          },
+          {
+            "k": "rep",
+            "l": "Share who buy again",
+            "v": 25,
+            "min": 1,
+            "max": 90,
+            "step": 1,
+            "pct": true
+          },
+          {
+            "k": "aov",
+            "l": "Average order value",
+            "v": 1500,
+            "min": 50,
+            "max": 100000,
+            "step": 50,
+            "money": true
+          }
+        ]
+      }
+    ]
+  },
+  "fit": {
+    "note": "Runs in your browser. Nothing you paste is sent or stored.",
+    "terms": [
+      [
+        "Braze",
+        [
+          "braze",
+          "canvas"
+        ]
+      ],
+      [
+        "Salesforce",
+        [
+          "salesforce",
+          "sfdc",
+          "sales cloud"
+        ]
+      ],
+      [
+        "Salesforce Marketing Cloud",
+        [
+          "marketing cloud",
+          "sfmc",
+          "journey builder"
+        ]
+      ],
+      [
+        "HubSpot",
+        [
+          "hubspot"
+        ]
+      ],
+      [
+        "MoEngage",
+        [
+          "moengage"
+        ]
+      ],
+      [
+        "CleverTap",
+        [
+          "clevertap"
+        ]
+      ],
+      [
+        "Netcore",
+        [
+          "netcore"
+        ]
+      ],
+      [
+        "Revenue operations",
+        [
+          "revops",
+          "revenue operations",
+          "rev ops"
+        ]
+      ],
+      [
+        "Marketing operations",
+        [
+          "marketing operations",
+          "marketing ops",
+          "mops"
+        ]
+      ],
+      [
+        "Martech",
+        [
+          "martech",
+          "marketing technology",
+          "mar-tech"
+        ]
+      ],
+      [
+        "CRM",
+        [
+          "crm"
+        ]
+      ],
+      [
+        "Lifecycle marketing",
+        [
+          "lifecycle",
+          "customer lifecycle"
+        ]
+      ],
+      [
+        "Marketing automation",
+        [
+          "marketing automation",
+          "automation"
+        ]
+      ],
+      [
+        "Customer journeys",
+        [
+          "journey",
+          "journeys",
+          "orchestration"
+        ]
+      ],
+      [
+        "Retention",
+        [
+          "retention",
+          "churn",
+          "win-back",
+          "winback",
+          "reactivation"
+        ]
+      ],
+      [
+        "Loyalty",
+        [
+          "loyalty"
+        ]
+      ],
+      [
+        "Onboarding and activation",
+        [
+          "onboarding",
+          "activation"
+        ]
+      ],
+      [
+        "Segmentation and personalisation",
+        [
+          "segmentation",
+          "personalization",
+          "personalisation",
+          "targeting"
+        ]
+      ],
+      [
+        "Omnichannel",
+        [
+          "omnichannel",
+          "omni-channel",
+          "push notification",
+          "in-app",
+          "whatsapp",
+          "sms",
+          "email marketing"
+        ]
+      ],
+      [
+        "Lead management",
+        [
+          "lead management",
+          "lead routing",
+          "lead scoring",
+          "leads"
+        ]
+      ],
+      [
+        "MQL and SQL",
+        [
+          "mql",
+          "sql conversion",
+          "sales qualified",
+          "marketing qualified"
+        ]
+      ],
+      [
+        "Pipeline and funnel",
+        [
+          "pipeline",
+          "funnel"
+        ]
+      ],
+      [
+        "Attribution",
+        [
+          "attribution"
+        ]
+      ],
+      [
+        "CAC, ROAS and LTV",
+        [
+          "cac",
+          "roas",
+          "ltv",
+          "lifetime value",
+          "unit economics"
+        ]
+      ],
+      [
+        "GTM",
+        [
+          "go-to-market",
+          "gtm"
+        ]
+      ],
+      [
+        "Sales and marketing alignment",
+        [
+          "sales and marketing",
+          "alignment",
+          "cross-functional"
+        ]
+      ],
+      [
+        "Analytics and reporting",
+        [
+          "dashboard",
+          "reporting",
+          "analytics",
+          "kpi",
+          "okr",
+          "insights"
+        ]
+      ],
+      [
+        "Experimentation",
+        [
+          "a/b",
+          "ab test",
+          "experiment",
+          "testing",
+          "holdout"
+        ]
+      ],
+      [
+        "Data integration",
+        [
+          "data integration",
+          "cdp",
+          "data warehouse",
+          "warehouse",
+          "data pipeline",
+          "etl",
+          "integration",
+          "api"
+        ]
+      ],
+      [
+        "Event tracking",
+        [
+          "event tracking",
+          "tracking",
+          "taxonomy",
+          "instrumentation"
+        ]
+      ],
+      [
+        "Deep linking",
+        [
+          "deep link",
+          "deeplink"
+        ]
+      ],
+      [
+        "Migration",
+        [
+          "migration",
+          "migrate",
+          "implementation"
+        ]
+      ],
+      [
+        "AppsFlyer",
+        [
+          "appsflyer"
+        ]
+      ],
+      [
+        "Firebase",
+        [
+          "firebase"
+        ]
+      ],
+      [
+        "Google Analytics",
+        [
+          "google analytics",
+          "ga4"
+        ]
+      ],
+      [
+        "Tableau",
+        [
+          "tableau"
+        ]
+      ],
+      [
+        "Metabase",
+        [
+          "metabase"
+        ]
+      ],
+      [
+        "SQL",
+        [
+          "sql queries",
+          "sql query",
+          "writing sql",
+          "sql skills",
+          "knowledge of sql",
+          "proficiency in sql",
+          "sql,",
+          "sql and"
+        ]
+      ],
+      [
+        "Agile and Scrum",
+        [
+          "agile",
+          "scrum",
+          "sprint"
+        ]
+      ],
+      [
+        "JIRA and Confluence",
+        [
+          "jira",
+          "confluence"
+        ]
+      ],
+      [
+        "Stakeholder management",
+        [
+          "stakeholder"
+        ]
+      ],
+      [
+        "Growth",
+        [
+          "growth"
+        ]
+      ],
+      [
+        "Fintech",
+        [
+          "fintech",
+          "trading",
+          "financial services",
+          "banking"
+        ]
+      ],
+      [
+        "Consumer apps",
+        [
+          "consumer",
+          "mobile app",
+          "b2c"
+        ]
+      ],
+      [
+        "eCommerce",
+        [
+          "ecommerce",
+          "e-commerce",
+          "retail"
+        ]
+      ],
+      [
+        "Compliance",
+        [
+          "compliance",
+          "gdpr",
+          "regulated"
+        ]
+      ]
+    ],
+    "gaps": [
+      [
+        "Marketo",
+        [
+          "marketo"
+        ]
+      ],
+      [
+        "Pardot",
+        [
+          "pardot",
+          "account engagement"
+        ]
+      ],
+      [
+        "Iterable",
+        [
+          "iterable"
+        ]
+      ],
+      [
+        "Klaviyo",
+        [
+          "klaviyo"
+        ]
+      ],
+      [
+        "Customer.io",
+        [
+          "customer.io"
+        ]
+      ],
+      [
+        "Segment",
+        [
+          "segment.com",
+          "twilio segment"
+        ]
+      ],
+      [
+        "Amplitude",
+        [
+          "amplitude"
+        ]
+      ],
+      [
+        "Mixpanel",
+        [
+          "mixpanel"
+        ]
+      ],
+      [
+        "Looker",
+        [
+          "looker"
+        ]
+      ],
+      [
+        "dbt",
+        [
+          "dbt"
+        ]
+      ],
+      [
+        "Python",
+        [
+          "python"
+        ]
+      ],
+      [
+        "Gong",
+        [
+          "gong"
+        ]
+      ],
+      [
+        "Outreach",
+        [
+          "outreach.io",
+          "salesloft"
+        ]
+      ],
+      [
+        "Zapier",
+        [
+          "zapier"
+        ]
+      ],
+      [
+        "Hightouch",
+        [
+          "hightouch",
+          "census"
+        ]
+      ],
+      [
+        "Snowflake",
+        [
+          "snowflake"
+        ]
+      ],
+      [
+        "Power BI",
+        [
+          "power bi"
+        ]
+      ],
+      [
+        "Adobe",
+        [
+          "adobe"
+        ]
+      ]
+    ],
+    "sample": "We're hiring a Senior Martech / CRM Manager to own our lifecycle marketing on Braze and Salesforce. You'll build onboarding, retention and win-back journeys, partner with sales on lead scoring and MQL to SQL conversion, own attribution and funnel reporting, run A/B tests, and lead CRM data integration with our warehouse. Experience in fintech and stakeholder management across marketing, product and data is a plus. Amplitude or Looker knowledge desirable."
+  }
+}
