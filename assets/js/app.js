@@ -163,7 +163,7 @@ const ST=S.statements;let sti=0,stT;
 function setSt(i){sti=(i+ST.length)%ST.length;const box=$('#stmt');box.classList.add('out');
  setTimeout(()=>{$('#stH').textContent=ST[sti].h;$('#stS').textContent=ST[sti].s;box.classList.remove('out')},RM?0:280);
  $$('.stdots button').forEach(b=>{b.setAttribute('aria-selected',b.dataset.i==sti);b.classList.remove('run');if(b.dataset.i==sti&&!RM){void b.offsetWidth;b.classList.add('run')}})}
-const autoSt=()=>{clearInterval(stT);if(!RM)stT=setInterval(()=>setSt(sti+1),3000)};
+const autoSt=()=>{clearInterval(stT);if(!RM)stT=setInterval(()=>setSt(sti+1),2000)};
 $$('.stdots button').forEach(b=>b.onclick=()=>{setSt(+b.dataset.i);autoSt()});
 $('#stmt').addEventListener('mouseenter',()=>clearInterval(stT));$('#stmt').addEventListener('mouseleave',autoSt);
 function fitSt(){const box=$('#stmt'),c=box.cloneNode(true);c.removeAttribute('id');c.style.cssText='position:absolute;visibility:hidden;min-height:0;width:'+box.clientWidth+'px';box.parentNode.appendChild(c);
